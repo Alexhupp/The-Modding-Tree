@@ -1,28 +1,36 @@
 let modInfo = {
-	name: "The ??? Tree",
-	id: "mymod",
-	author: "nobody",
-	pointsName: "points",
-	modFiles: ["layers.js", "tree.js"],
+	name: "The World Tree Nordrasil",
+	id: "TWT",
+	author: "Ya Boi Alex#3516",
+	pointsName: "Essence",
+	modFiles: [
+							"utils/borderRadius.js",
+							"layers/Row0/Ground.js","layers/Row0/River.js",
+							"layers/Row1/Grass.js","layers/Row1/Stream.js",
+							"layers/Row2/Roots.js",
+							"layers/Row3/Energy.js",
+							"layers/SideTabs/GreaterEssence.js",
+							 "tree.js"],
 
-	discordName: "",
-	discordLink: "",
+
+	discordName: "The World Tree Nordrasil",
+	discordLink: "https://discord.gg/AyNVacrB",
 	initialStartPoints: new Decimal (10), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "Literally nothing",
+	num: "0.1B",
+	name: "The Roots",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0</h3><br>
-		- Added things.<br>
-		- Added stuff.`
+	<h3>v0.1B</h3><br>
+		- Game Created.<br>
+		- Added The Base Tree Layout and Upgrades.`
 
-let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
+let winText = `Congratulations! You have exceeded the bounds of the Tree Of Nordrasil's Branches.`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -37,13 +45,24 @@ function canGenPoints(){
 	return true
 }
 
+function calculateBaseGain(){
+	let Base = new Decimal(1)
+	Base = Base.add(layerEffect("Ground").baseGainIncrease)
+
+	return Base
+}
+
 // Calculate points/sec!
 function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 
-	let gain = new Decimal(1)
-	return gain
+
+	let BaseGain = calculateBaseGain()
+	BaseGain = BaseGain.times(layerEffect("River").pointGainMulti.add("1"))
+
+
+	return BaseGain
 }
 
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values

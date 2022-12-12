@@ -50,6 +50,10 @@ function setGridData(layer, id, data) {
 	player[layer].grid[id] = data
 }
 
+function layerEffect(layer) {
+	return (tmp[layer].effect)
+}
+
 function upgradeEffect(layer, id) {
 	return (tmp[layer].upgrades[id].effect)
 }

@@ -168,10 +168,10 @@ ul {
 	transition-duration: 0s
 }
 
-.tooltipBox { 
+.tooltipBox {
 	position: relative;
   }
-  
+
   .tooltipBox:hover .tooltip{
 	opacity: 1;
   }
@@ -179,7 +179,7 @@ ul {
   .forceTooltip .tooltip{
 	opacity: 1;
   }
-  
+
 .respecCheckbox {
 	display: inline-block;
 }
@@ -248,4 +248,3 @@ button > * {
 	background-image: none !important;
 	--background: transparent !important;
 }
-

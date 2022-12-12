@@ -36,7 +36,7 @@ function loadVue() {
 			<img class="instant" v-bind:src= "data" v-bind:alt= "data">
 		`
 	})
-		
+
 	// data = an array of Components to be displayed in a row
 	Vue.component('row', {
 		props: ['layer', 'data'],
@@ -225,11 +225,11 @@ function loadVue() {
 		props: ['layer', 'data'],
 		template: `
 		<button v-if="(tmp[layer].type !== 'none')" v-bind:class="{ [layer]: true, reset: true, locked: !tmp[layer].canReset, can: tmp[layer].canReset}"
-			v-bind:style="[tmp[layer].canReset ? {'background-color': tmp[layer].color} : {}, tmp[layer].componentStyles['prestige-button']]"
+			v-bind:style="[tmp[layer].canReset ? {'background-color': tmp[layer].color, 'border-radius': '24px 0px 0px 24px'} : {'border-radius': '24px 0px 0px 24px'}, tmp[layer].componentStyles['prestige-button']] "
 			v-html="prestigeButtonText(layer)" v-on:click="doReset(layer)">
 		</button>
 		`
-	
+
 	})
 
 	// Displays the main resource for the layer
@@ -314,7 +314,7 @@ function loadVue() {
 			</div>
 			`
 	})
-	
+
 	Vue.component('clickables', {
 		props: ['layer', 'data'],
 		template: `
@@ -334,8 +334,8 @@ function loadVue() {
 	Vue.component('clickable', {
 		props: ['layer', 'data'],
 		template: `
-		<button 
-			v-if="tmp[layer].clickables && tmp[layer].clickables[data]!== undefined && tmp[layer].clickables[data].unlocked" 
+		<button
+			v-if="tmp[layer].clickables && tmp[layer].clickables[data]!== undefined && tmp[layer].clickables[data].unlocked"
 			v-bind:class="{ upg: true, tooltipBox: true, can: tmp[layer].clickables[data].canClick, locked: !tmp[layer].clickables[data].canClick}"
 			v-bind:style="[tmp[layer].clickables[data].canClick ? {'background-color': tmp[layer].color} : {}, tmp[layer].clickables[data].style]"
 			v-on:click="if(!interval) clickClickable(layer, data)" :id='"clickable-" + layer + "-" + data' @mousedown="start" @mouseleave="stop" @mouseup="stop" @touchstart="start" @touchend="stop" @touchcancel="stop">
@@ -354,7 +354,7 @@ function loadVue() {
 						let c = layers[this.layer].clickables[this.data]
 						if(this.time >= 5 && run(c.canClick, c)) {
 							run(c.onHold, c)
-						}	
+						}
 						this.time = this.time+1
 					}).bind(this), 50)}
 			},
@@ -394,8 +394,8 @@ function loadVue() {
 	Vue.component('gridable', {
 		props: ['layer', 'data'],
 		template: `
-		<button 
-		v-if="tmp[layer].grid && player[layer].grid[data]!== undefined && run(layers[layer].grid.getUnlocked, layers[layer].grid, data)" 
+		<button
+		v-if="tmp[layer].grid && player[layer].grid[data]!== undefined && run(layers[layer].grid.getUnlocked, layers[layer].grid, data)"
 		v-bind:class="{ tile: true, can: canClick, locked: !canClick, tooltipBox: true,}"
 		v-bind:style="[canClick ? {'background-color': tmp[layer].color} : {}, gridRun(layer, 'getStyle', player[this.layer].grid[this.data], this.data)]"
 		v-on:click="clickGrid(layer, data)"  @mousedown="start" @mouseleave="stop" @mouseup="stop" @touchstart="start" @touchend="stop" @touchcancel="stop">
@@ -415,7 +415,7 @@ function loadVue() {
 				if (!this.interval && layers[this.layer].grid.onHold) {
 					this.interval = setInterval((function() {
 						if(this.time >= 5 && gridRun(this.layer, 'getCanClick', player[this.layer].grid[this.data], this.data)) {
-							gridRun(this.layer, 'onHold', player[this.layer].grid[this.data], this.data)						}	
+							gridRun(this.layer, 'onHold', player[this.layer].grid[this.data], this.data)						}
 						this.time = this.time+1
 					}).bind(this), 50)}
 			},
@@ -661,5 +661,3 @@ function loadVue() {
 		},
 	})
 }
-
- 
