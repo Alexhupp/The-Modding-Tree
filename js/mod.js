@@ -5,11 +5,11 @@ let modInfo = {
 	pointsName: "Essence",
 	modFiles: [
 							"utils/borderRadius.js",
-							"layers/Row0/Ground.js","layers/Row0/River.js",
-							"layers/Row1/Grass.js","layers/Row1/Stream.js",
-							"layers/Row2/Roots.js",
-							"layers/Row3/Energy.js",
-							"layers/SideTabs/GreaterEssence.js",
+							"Layers/Row0/Ground.js","Layers/Row0/River.js",
+							"Layers/Row1/Grass.js","Layers/Row1/Stream.js",
+							"Layers/Row2/Roots.js",
+							"Layers/Row3/Energy.js",
+							"Layers/SideTabs/GreaterEssence.js",
 							 "tree.js"],
 
 
